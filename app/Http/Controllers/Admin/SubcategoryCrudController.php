@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\SubcategoryRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use App\Models\Subcategory;
 use App\Models\Category;
 
 /**
- * Class CategoryCrudController
+ * Class SubcategoryCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class CategoryCrudController extends CrudController
+class SubcategoryCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -23,9 +24,9 @@ class CategoryCrudController extends CrudController
 
     public function setup()
     {
-        $this->crud->setModel(Category::class);
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/category');
-        $this->crud->setEntityNameStrings(trans_choice('admin.category', 1), trans_choice('admin.category', 2));
+        $this->crud->setModel(Subcategory::class);
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/subcategory');
+        $this->crud->setEntityNameStrings(trans_choice('admin.subcategory', 1), trans_choice('admin.subcategory', 2));
         $this->crud->addClause('orderBy', 'lft');
     }
 
@@ -37,46 +38,59 @@ class CategoryCrudController extends CrudController
                 'label' => trans('admin.name'),
             ],
             [
-                'name' => 'color',
-                'label' => trans('admin.background_color'),
+                'name' => 'image',
+                'label' => trans('admin.image'),
+                'type' => 'image',
+                'prefix' => 'uploads/',
+                'width' => '150px',
+                'height' => '150px',
+            ],
+            [
+                'name' => 'category_id',
+                'label' => trans_choice('admin.category', 2),
+                'type' => 'select',
+                'entity' => 'category',
+                'attribute' => 'name',
+                'model' => Category::class,
             ],
             [
                 'name' => 'status',
                 'label' => trans('admin.status'),
                 'type' => 'select_from_array',
-                'options' => Category::getStatusOptions(),
+                'options' => Subcategory::getStatusOptions(),
             ],
         ]);
     }
 
     protected function setupCreateOperation()
     {
-        $this->crud->setValidation(CategoryRequest::class);
+        $this->crud->setValidation(SubcategoryRequest::class);
 
         $this->crud->addFields([
             [
                 'name' => 'name',
                 'label' => trans('admin.name'),
-                'type' => 'text',
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6',
-                ],
             ],
             [
-                'name' => 'color',
-                'label' => trans('admin.background_color'),
-                'type' => 'color_picker',
-                'default' => '#000000',
-                'color_picker_options' => ['customClass' => 'custom-class'],
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-md-6',
-                ],
+                'name' => 'image',
+                'label' => trans('admin.image'),
+                'type' => 'image',
+                'upload' => true,
+                'disk' => 'uploads',
+            ],
+            [
+                'name' => 'category_id',
+                'label' => trans_choice('admin.category', 2),
+                'type' => 'select2',
+                'entity' => 'category',
+                'attribute' => 'name',
+                'model' => Category::class
             ],
             [
                 'name' => 'status',
                 'label' => trans('admin.status'),
                 'type' => 'select2_from_array',
-                'options' => Category::getStatusOptions(),
+                'options' => Subcategory::getStatusOptions(),
             ],
         ]);
     }
