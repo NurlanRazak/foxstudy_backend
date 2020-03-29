@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0c71d1ea6bbd339f4ec9c3fe048cc8c2",
+    "content-hash": "5d2a375783b6cc430c34ae97faa34d24",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -257,6 +257,58 @@
                 "tinymce"
             ],
             "time": "2020-02-25T20:53:00+00:00"
+        },
+        {
+            "name": "brandstudio/apie",
+            "version": "v2-stable",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brandstudio-kz/apie.git",
+                "reference": "6bb1dd0b132e729d7e0fcacc8020e9502420826c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brandstudio-kz/apie/zipball/6bb1dd0b132e729d7e0fcacc8020e9502420826c",
+                "reference": "6bb1dd0b132e729d7e0fcacc8020e9502420826c",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "BrandStudio\\Apie\\ApieServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BrandStudio\\Apie\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nurdaulet",
+                    "email": "nurik9293709@gmail.com",
+                    "homepage": "https://sarsenovz2z.github.io/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Nurlan",
+                    "email": "nurlan.bboy@gmail.com",
+                    "homepage": "https://nurlanrazak.github.io",
+                    "role": "Developer"
+                }
+            ],
+            "description": "BrandStudio api template",
+            "homepage": "https://github.com/brandstudio-kz/apie",
+            "keywords": [
+                "Brandstudio"
+            ],
+            "time": "2019-11-19T13:52:47+00:00"
         },
         {
             "name": "creativeorange/gravatar",
