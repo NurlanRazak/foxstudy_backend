@@ -22,7 +22,7 @@ class Company extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    protected $fillable = ['name', 'image', 'description', 'link', 'fields', 'status'];
+    protected $fillable = ['name', 'image', 'address', 'description', 'link', 'fields', 'status'];
     protected $casts = [
         'fields' => 'array',
     ];

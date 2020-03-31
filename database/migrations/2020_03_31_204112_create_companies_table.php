@@ -19,6 +19,7 @@ class CreateCompaniesTable extends Migration
             $table->string('image')->nullable();
             $table->longText('description')->nullable();
             $table->string('link')->nullable();
+            $table->string('address')->nullable();
             $table->json('fields')->nullable();
 
             $table->tinyInteger('status')->default(0);

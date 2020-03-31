@@ -75,6 +75,10 @@ class CompanyCrudController extends CrudController
                 'type' => 'textarea',
             ],
             [
+                'name' => 'address',
+                'label' => trans('admin.address'),
+            ],
+            [
                 'name' => 'image',
                 'label' => trans('admin.image'),
                 'type' => 'image',
