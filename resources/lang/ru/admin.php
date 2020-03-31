@@ -7,10 +7,13 @@ return [
     'student' => 'студента|Студенты',
     'company' => 'компанию|Компания',
     'vacancy' => 'вакансию|Вакансия',
+    'staff' => 'отлик|Откликнувшие',
 
     'name' => 'Название',
     'background_color' => 'Цвет фона',
     'image' => 'Изображение',
+    'email' => 'Email',
+    'phone_number' => 'Номер телефона',
     'images' => 'Изображения',
     'description' => 'Описание',
     'link' => 'URL',

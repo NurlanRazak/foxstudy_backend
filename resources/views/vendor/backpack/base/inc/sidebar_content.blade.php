@@ -9,3 +9,5 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('company') }}'><i class='nav-icon fa fa-university'></i> {{ trans_choice('admin.company', 2) }}</a></li>
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('vacancy') }}'><i class='nav-icon fa fa-user-plus'></i> {{ trans_choice('admin.vacancy', 2) }}</a></li>
+
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('staff') }}'><i class='nav-icon fa fa-user'></i> {{ trans_choice('admin.staff', 2) }}</a></li>
