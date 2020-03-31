@@ -5,11 +5,14 @@ return [
     'subcategory' => 'подкатегорию|Подкатегория',
     'course' => 'курс|Курсы',
     'student' => 'студента|Студенты',
+    'company' => 'компанию|Компания',
 
     'name' => 'Название',
     'background_color' => 'Цвет фона',
     'image' => 'Изображение',
     'images' => 'Изображения',
+    'description' => 'Описание',
+    'link' => 'URL',
     'short_description' => 'Краткое описание',
     'long_description' => 'Длинное описание',
     'longitude' => 'Долгота',
@@ -19,6 +22,7 @@ return [
     'at_evening' => 'Вечером',
     'rating' => 'Рейтинг',
     'hint_rating' => 'рейтинг подсчитывается автоматически',
+    'activity_fields' => 'Сферы деятельности',
 
     'status' => 'Статус',
     'published' => 'Опубликован',
