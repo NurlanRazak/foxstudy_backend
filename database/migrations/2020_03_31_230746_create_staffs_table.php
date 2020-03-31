@@ -19,6 +19,9 @@ class CreateStaffsTable extends Migration
             $table->string('email')->nullable();
             $table->string('phone_number')->nullable();
             $table->text('about')->nullable();
+
+            $table->unsignedBigInteger('vacancy_id');
+            $table->foreign('vacancy_id')->references('id')->on('vacancies')->onDelete('cascade');
             $table->timestamps();
         });
     }

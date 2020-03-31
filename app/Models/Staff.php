@@ -19,7 +19,7 @@ class Staff extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    protected $fillable = ['name', 'email', 'phone_number', 'about'];
+    protected $fillable = ['name', 'email', 'phone_number', 'vacancy_id', 'about'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -34,7 +34,10 @@ class Staff extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function vacancy()
+    {
+        return $this->belongsTo(Vacancy::class, 'vacancy_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

@@ -6,6 +6,7 @@ use App\Http\Requests\StaffRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use App\Models\Staff;
+use App\Models\Vacancy;
 
 /**
  * Class StaffCrudController
@@ -42,6 +43,14 @@ class StaffCrudController extends CrudController
                 'name' => 'phone_number',
                 'label' => trans('admin.phone_number'),
             ],
+            [
+                'name' => 'vacancy_id',
+                'label' => trans_choice('admin.vacancy', 2),
+                'type' => 'select',
+                'entity' => 'vacancy',
+                'attribute' => 'name',
+                'model' => Vacancy::class,
+            ],
             // [
             //     'name' => 'about',
             //     'label' => trans('admin.about'),
@@ -65,6 +74,14 @@ class StaffCrudController extends CrudController
             [
                 'name' => 'phone_number',
                 'label' => trans('admin.phone_number'),
+            ],
+            [
+                'name' => 'vacancy_id',
+                'label' => trans_choice('admin.vacancy', 2),
+                'type' => 'select2',
+                'entity' => 'vacancy',
+                'attribute' => 'name',
+                'model' => Vacancy::class,
             ],
             // [
             //     'name' => 'about',
