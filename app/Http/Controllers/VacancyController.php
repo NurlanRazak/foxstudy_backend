@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Resources\JobResource;
 use App\Models\Vacancy;
+use App\Models\Staff;
 
 class VacancyController extends Controller
 {
@@ -27,5 +28,15 @@ class VacancyController extends Controller
             'data' => $data,
             'message' => 'OK',
         ]);
+    }
+
+    public function application(Request $request)
+    {
+        $application = Staff::create($request->toArray());
+        return response()->json([
+            'status' => '200',
+            'successfull' =>true
+        ]);
+        //name, phone_number, email
     }
 }
