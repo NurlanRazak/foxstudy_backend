@@ -76,7 +76,11 @@ class Company extends Model
 
     public function getLink()
     {
-        return '<a href="'.url($this->link).'">'.$this->link.'</a>';
+        if($this->link) {
+            return '<a href="'.url($this->link).'">'.$this->link.'</a>';
+        } else {
+            return '';
+        }
     }
     /*
     |--------------------------------------------------------------------------
