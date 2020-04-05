@@ -4,10 +4,9 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Company;
-use App\Models\Question;
+use App\Models\Vacancy;
 
-class Vacancy extends Model
+class Question extends Model
 {
     use CrudTrait;
 
@@ -19,15 +18,14 @@ class Vacancy extends Model
     const PUBLISHED = 1;
     const DRAFT = 0;
 
-    protected $table = 'vacancies';
+    protected $table = 'questions';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    protected $fillable = [
-        'name',
-        'work_hours', 'experience', 'payment',
-        'company_id', 'description', 'address',
-        'timer', 'status'
+    protected $fillable = ['name', 'status'];
+    protected $fakeColumns = ['name'];
+    protected $casts = [
+        'name' => 'array'
     ];
     // protected $hidden = [];
     // protected $dates = [];
@@ -43,15 +41,11 @@ class Vacancy extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function company()
+    public function vacancies()
     {
-        return $this->belongsTo(Company::class, 'company_id');
+        return $this->belongsToMany(Vacancy::class, 'question_vacancy', 'question_id', 'vacancy_id');
     }
 
-    public function questions()
-    {
-        return $this->belongsToMany(Question::class, 'question_vacancy', 'vacancy_id', 'question_id');
-    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES
@@ -61,6 +55,7 @@ class Vacancy extends Model
     {
         $query->where('status', static::PUBLISHED);
     }
+
     /*
     |--------------------------------------------------------------------------
     | ACCESSORS
@@ -73,6 +68,7 @@ class Vacancy extends Model
             static::DRAFT => trans('admin.draft'),
         ];
     }
+
     /*
     |--------------------------------------------------------------------------
     | MUTATORS

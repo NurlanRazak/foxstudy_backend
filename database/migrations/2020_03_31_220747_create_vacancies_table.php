@@ -21,6 +21,7 @@ class CreateVacanciesTable extends Migration
             $table->string('payment')->nullable();
             $table->unsignedBigInteger('company_id')->nullable();
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->integer('timer')->nullable();
 
             $table->longText('description')->nullable();
             $table->string('address')->nullable();

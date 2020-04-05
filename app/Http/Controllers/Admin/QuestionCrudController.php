@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\VacancyRequest;
+use App\Http\Requests\QuestionRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use App\Models\Vacancy;
 use App\Models\Question;
-use App\Models\Company;
+
 /**
- * Class VacancyCrudController
+ * Class QuestionCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class VacancyCrudController extends CrudController
+class QuestionCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -23,9 +23,9 @@ class VacancyCrudController extends CrudController
 
     public function setup()
     {
-        $this->crud->setModel(Vacancy::class);
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/vacancy');
-        $this->crud->setEntityNameStrings(trans_choice('admin.vacancy', 1), trans_choice('admin.vacancy', 2));
+        $this->crud->setModel(Question::class);
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/question');
+        $this->crud->setEntityNameStrings(trans_choice('admin.question', 1), trans_choice('admin.question', 2));
     }
 
     protected function setupListOperation()
@@ -36,66 +36,42 @@ class VacancyCrudController extends CrudController
                 'label' => trans('admin.name'),
             ],
             [
-                'name' => 'company_id',
-                'label' => trans_choice('admin.company', 2),
-                'type' => 'select',
-                'entity' => 'company',
-                'attribute' => 'name',
-                'model' => Company::class,
-            ],
-            [
-                'name' => 'questions',
-                'label' => trans_choice('admin.question', 2),
+                'name' => 'vacancies',
+                'label' => trans_choice('admin.vacancy', 2),
                 'type' => 'select_multiple',
-                'entity' => 'questions',
+                'entity' => 'vacancies',
                 'attribute' => 'name',
-                'model' => Question::class,
-            ],
-            [
-                'name' => 'timer',
-                'label' => trans('admin.timer'),
-                'type' => 'text',
+                'model' => Vacancy::class
             ],
             [
                 'name' => 'status',
                 'label' => trans('admin.status'),
                 'type' => 'select_from_array',
-                'options' => Vacancy::getStatusOptions(),
+                'options' => Question::getStatusOptions(),
             ],
         ]);
     }
 
     protected function setupCreateOperation()
     {
-        $this->crud->setValidation(VacancyRequest::class);
+        $this->crud->setValidation(QuestionRequest::class);
 
         $this->crud->addFields([
             [
-                'name' => 'name',
+                'name' => 'title',
                 'label' => trans('admin.name'),
+                'type' => 'ckeditor',
+                'fake' => true,
+                'store_in' => 'name',
             ],
             [
-                'name' => 'company_id',
-                'label' => trans_choice('admin.company', 2),
-                'type' => 'select2',
-                'entity' => 'company',
-                'attribute' => 'name',
-                'model' => Company::class,
-            ],
-            [
-                'name' => 'questions',
-                'label' => trans_choice('admin.question', 2),
+                'name' => 'vacancies',
+                'label' => trans_choice('admin.vacancy', 2),
                 'type' => 'select2_multiple',
-                'entity' => 'questions',
+                'entity' => 'vacancies',
                 'attribute' => 'name',
                 'pivot' => true,
-                'model' => Question::class,
-            ],
-            [
-                'name' => 'timer',
-                'label' => trans('admin.timer'),
-                'type' => 'text',
-                'suffix' => 'мин.',
+                'model' => Vacancy::class,
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-6',
                 ],
@@ -104,7 +80,7 @@ class VacancyCrudController extends CrudController
                 'name' => 'status',
                 'label' => trans('admin.status'),
                 'type' => 'select2_from_array',
-                'options' => Vacancy::getStatusOptions(),
+                'options' => Question::getStatusOptions(),
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-6',
                 ],
