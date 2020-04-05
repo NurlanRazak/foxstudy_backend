@@ -5,6 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Vacancy;
+use App\Models\Option;
 
 class Question extends Model
 {
@@ -22,10 +23,10 @@ class Question extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    protected $fillable = ['name', 'status'];
-    protected $fakeColumns = ['name'];
+    protected $fillable = ['name', 'extras', 'status'];
+    protected $fakeColumns = ['extras'];
     protected $casts = [
-        'name' => 'array'
+        'extras' => 'array'
     ];
     // protected $hidden = [];
     // protected $dates = [];
@@ -46,6 +47,10 @@ class Question extends Model
         return $this->belongsToMany(Vacancy::class, 'question_vacancy', 'question_id', 'vacancy_id');
     }
 
+    public function options()
+    {
+        return $this->hasMany(Option::class);
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

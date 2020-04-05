@@ -15,7 +15,8 @@ class CreateQuestionTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->json('name')->nullable();
+            $table->longText('name');
+            $table->json('extras')->nullable();
 
             $table->tinyInteger('status')->nullable();
             $table->timestamps();
@@ -29,6 +30,6 @@ class CreateQuestionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('question');
+        Schema::dropIfExists('questions');
     }
 }

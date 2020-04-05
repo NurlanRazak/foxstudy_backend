@@ -58,11 +58,15 @@ class QuestionCrudController extends CrudController
 
         $this->crud->addFields([
             [
-                'name' => 'title',
+                'name' => 'name',
                 'label' => trans('admin.name'),
+            ],
+            [
+                'name' => 'title',
+                'label' => trans('admin.question'),
                 'type' => 'ckeditor',
                 'fake' => true,
-                'store_in' => 'name',
+                'store_in' => 'extras',
             ],
             [
                 'name' => 'vacancies',
