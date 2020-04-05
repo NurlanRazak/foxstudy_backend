@@ -2,6 +2,13 @@
 
 return [
 
+
+    'origins' => '*',
+    'methods' => 'POST, GET, OPTIONS, PUT, DELETE',
+    'headers' => 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Authorization , Access-Control-Request-Headers',
+
+
+
     /*
     |--------------------------------------------------------------------------
     | Cross-Origin Resource Sharing (CORS) Configuration
@@ -15,20 +22,20 @@ return [
     |
     */
 
-    'paths' => ['api/*'],
-
-    'allowed_methods' => ['*'],
-
-    'allowed_origins' => ['*'],
-
-    'allowed_origins_patterns' => [],
-
-    'allowed_headers' => ['*'],
-
-    'exposed_headers' => false,
-
-    'max_age' => false,
-
-    'supports_credentials' => false,
+    // 'paths' => ['api/*'],
+    //
+    // 'allowed_methods' => ['*'],
+    //
+    // 'allowed_origins' => ['*'],
+    //
+    // 'allowed_origins_patterns' => [],
+    //
+    // 'allowed_headers' => ['*'],
+    //
+    // 'exposed_headers' => false,
+    //
+    // 'max_age' => false,
+    //
+    // 'supports_credentials' => false,
 
 ];
