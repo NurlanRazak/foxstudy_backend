@@ -7,6 +7,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use App\Models\Vacancy;
 use App\Models\Question;
+use App\Models\Option;
 
 /**
  * Class QuestionCrudController
@@ -25,7 +26,7 @@ class QuestionCrudController extends CrudController
     {
         $this->crud->setModel(Question::class);
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/question');
-        $this->crud->setEntityNameStrings(trans_choice('admin.question', 1), trans_choice('admin.question', 2));
+        $this->crud->setEntityNameStrings(trans_choice('admin.question', 1), trans('admin.question_big'));
     }
 
     protected function setupListOperation()
@@ -80,6 +81,14 @@ class QuestionCrudController extends CrudController
                     'class' => 'form-group col-md-6',
                 ],
             ],
+            // [
+            //     'name' => 'options',
+            //     'label' => trans_choice('admin.option', 2),
+            //     'type' => 'select2_multiple',
+            //     'entity' => 'options',
+            //     'attribute' => 'option',
+            //     'model' => Option::class,
+            // ],
             [
                 'name' => 'status',
                 'label' => trans('admin.status'),

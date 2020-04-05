@@ -13,6 +13,7 @@ return [
     'answer' => 'ответ|Ответы',
 
     'name' => 'Название',
+    'question_big' => 'Вопросы',
     'background_color' => 'Цвет фона',
     'image' => 'Изображение',
     'email' => 'Email',
@@ -32,7 +33,7 @@ return [
     'activity_fields' => 'Сферы деятельности',
     'address' => 'Адрес',
     'option_title' => 'Название варианта',
-    'question' => 'вопрос', 
+    'question' => 'вопрос',
 
     'status' => 'Статус',
     'published' => 'Опубликован',
