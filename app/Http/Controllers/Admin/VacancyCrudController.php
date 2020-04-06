@@ -54,7 +54,8 @@ class VacancyCrudController extends CrudController
             [
                 'name' => 'timer',
                 'label' => trans('admin.timer'),
-                'type' => 'text',
+                'type' => 'number',
+                'suffix' => ' мин',
             ],
             [
                 'name' => 'status',

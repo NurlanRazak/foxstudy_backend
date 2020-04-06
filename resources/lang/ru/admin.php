@@ -34,6 +34,7 @@ return [
     'address' => 'Адрес',
     'option_title' => 'Название варианта',
     'question' => 'вопрос',
+    'timer' => 'Таймер',
 
     'status' => 'Статус',
     'published' => 'Опубликован',
