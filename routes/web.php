@@ -12,3 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+Route::get('cache/clear', function() {
+    Artisan::call('config:cache');
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    return 'cache cleared';
+});
