@@ -13,6 +13,7 @@ class JobResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'timer' => $this->timer,
             // 'company' => new CompanyResourse($this->company),
          ];
     }
