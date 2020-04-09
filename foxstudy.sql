@@ -16,6 +16,37 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `answers`
+--
+
+DROP TABLE IF EXISTS `answers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `answers` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `question_id` bigint(20) unsigned NOT NULL,
+  `option_id` bigint(20) unsigned NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `answers_question_id_foreign` (`question_id`),
+  KEY `answers_option_id_foreign` (`option_id`),
+  CONSTRAINT `answers_option_id_foreign` FOREIGN KEY (`option_id`) REFERENCES `options` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `answers_question_id_foreign` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `answers`
+--
+
+LOCK TABLES `answers` WRITE;
+/*!40000 ALTER TABLE `answers` DISABLE KEYS */;
+INSERT INTO `answers` VALUES (1,1,2,'2020-04-06 00:32:27','2020-04-06 01:22:19');
+/*!40000 ALTER TABLE `answers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `categories`
 --
 
@@ -34,7 +65,7 @@ CREATE TABLE `categories` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +74,6 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (1,'adsf asdf','#000000',1,0,NULL,NULL,NULL,'2020-03-29 18:32:19','2020-03-29 18:32:19'),(2,'тест2','#000000',1,0,NULL,NULL,NULL,'2020-03-30 08:38:53','2020-03-30 08:38:53');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -70,7 +100,7 @@ CREATE TABLE `companies` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,7 +109,6 @@ CREATE TABLE `companies` (
 
 LOCK TABLES `companies` WRITE;
 /*!40000 ALTER TABLE `companies` DISABLE KEYS */;
-INSERT INTO `companies` VALUES (1,'apple',NULL,NULL,NULL,NULL,NULL,1,0,NULL,NULL,NULL,'2020-03-31 17:39:49','2020-03-31 17:39:49');
 /*!40000 ALTER TABLE `companies` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,7 +143,7 @@ CREATE TABLE `courses` (
   PRIMARY KEY (`id`),
   KEY `courses_subcategory_id_foreign` (`subcategory_id`),
   CONSTRAINT `courses_subcategory_id_foreign` FOREIGN KEY (`subcategory_id`) REFERENCES `subcategories` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,7 +152,6 @@ CREATE TABLE `courses` (
 
 LOCK TABLES `courses` WRITE;
 /*!40000 ALTER TABLE `courses` DISABLE KEYS */;
-INSERT INTO `courses` VALUES (1,'test course','sadf afsdf sad','<p>fsd afasdf asdf</p>','course/image/b386df756bd76aaa275f955fa020c805.jpg','[]','{\"latitude\": \"тест2\", \"longitude\": \"тест\"}',0,1,1,'fasd a','fasdf','fadsf asf',1,0,NULL,NULL,NULL,'2020-03-30 08:40:42','2020-03-30 08:40:42');
 /*!40000 ALTER TABLE `courses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,7 +194,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,8 +203,93 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2019_08_19_000000_create_failed_jobs_table',1),(3,'2020_03_28_212144_create_categories_table',1),(4,'2020_03_28_231631_create_subcategories_table',1),(5,'2020_03_29_010051_create_courses_table',1),(6,'2020_03_30_125203_create_students_table',2),(8,'2020_03_31_204112_create_companies_table',3),(9,'2020_03_31_220747_create_vacancies_table',3),(11,'2020_03_31_230746_create_staffs_table',4);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2019_08_19_000000_create_failed_jobs_table',1),(3,'2020_03_28_212144_create_categories_table',1),(4,'2020_03_28_231631_create_subcategories_table',1),(5,'2020_03_29_010051_create_courses_table',1),(6,'2020_03_30_125203_create_students_table',1),(7,'2020_03_31_204112_create_companies_table',1),(8,'2020_03_31_220747_create_vacancies_table',1),(9,'2020_03_31_230746_create_staffs_table',1),(10,'2020_04_06_015201_create_question_table',1),(11,'2020_04_06_020938_create_question_vacancy_table',1),(12,'2020_04_06_042323_create_options_table',1),(14,'2020_04_06_042342_create_answers_table',2);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `options`
+--
+
+DROP TABLE IF EXISTS `options`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `options` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `question_id` bigint(20) unsigned DEFAULT NULL,
+  `option` longtext COLLATE utf8mb4_unicode_ci,
+  `status` tinyint(4) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `options_question_id_foreign` (`question_id`),
+  CONSTRAINT `options_question_id_foreign` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `options`
+--
+
+LOCK TABLES `options` WRITE;
+/*!40000 ALTER TABLE `options` DISABLE KEYS */;
+INSERT INTO `options` VALUES (1,1,'<p>asd as aSD</p>',1,'2020-04-05 23:04:15','2020-04-05 23:04:15'),(2,1,'<p>FADS FADSF ADSFasdfa sdf asd</p>',1,'2020-04-05 23:04:34','2020-04-06 01:48:04'),(3,1,NULL,0,'2020-04-05 23:08:50','2020-04-06 01:48:11');
+/*!40000 ALTER TABLE `options` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `question_vacancy`
+--
+
+DROP TABLE IF EXISTS `question_vacancy`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `question_vacancy` (
+  `question_id` bigint(20) unsigned NOT NULL,
+  `vacancy_id` bigint(20) unsigned NOT NULL,
+  KEY `question_vacancy_question_id_foreign` (`question_id`),
+  KEY `question_vacancy_vacancy_id_foreign` (`vacancy_id`),
+  CONSTRAINT `question_vacancy_question_id_foreign` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `question_vacancy_vacancy_id_foreign` FOREIGN KEY (`vacancy_id`) REFERENCES `vacancies` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `question_vacancy`
+--
+
+LOCK TABLES `question_vacancy` WRITE;
+/*!40000 ALTER TABLE `question_vacancy` DISABLE KEYS */;
+INSERT INTO `question_vacancy` VALUES (1,1),(2,1),(3,1);
+/*!40000 ALTER TABLE `question_vacancy` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `questions`
+--
+
+DROP TABLE IF EXISTS `questions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `questions` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `extras` json DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `questions`
+--
+
+LOCK TABLES `questions` WRITE;
+/*!40000 ALTER TABLE `questions` DISABLE KEYS */;
+INSERT INTO `questions` VALUES (1,'asgasd fasdf a','{\"title\": \"<p>fdas fasd</p>\"}',1,'2020-04-05 23:04:04','2020-04-05 23:04:04'),(2,'test','{\"title\": \"<p>sfzxcZcZ cS dsaff</p>\"}',1,'2020-04-05 23:08:50','2020-04-05 23:08:50'),(3,'test2','{\"title\": \"<p>asf asdf</p>\"}',1,'2020-04-06 01:51:36','2020-04-06 01:51:36');
+/*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -198,7 +311,7 @@ CREATE TABLE `staffs` (
   PRIMARY KEY (`id`),
   KEY `staffs_vacancy_id_foreign` (`vacancy_id`),
   CONSTRAINT `staffs_vacancy_id_foreign` FOREIGN KEY (`vacancy_id`) REFERENCES `vacancies` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -207,7 +320,6 @@ CREATE TABLE `staffs` (
 
 LOCK TABLES `staffs` WRITE;
 /*!40000 ALTER TABLE `staffs` DISABLE KEYS */;
-INSERT INTO `staffs` VALUES (1,'Nurlanio','nurlanio@mail.ru','8747732',NULL,1,'2020-03-31 18:29:56','2020-03-31 18:29:56');
 /*!40000 ALTER TABLE `staffs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -264,7 +376,7 @@ CREATE TABLE `subcategories` (
   PRIMARY KEY (`id`),
   KEY `subcategories_category_id_foreign` (`category_id`),
   CONSTRAINT `subcategories_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -273,7 +385,6 @@ CREATE TABLE `subcategories` (
 
 LOCK TABLES `subcategories` WRITE;
 /*!40000 ALTER TABLE `subcategories` DISABLE KEYS */;
-INSERT INTO `subcategories` VALUES (1,'test2',NULL,1,1,0,NULL,NULL,NULL,'2020-03-30 08:39:23','2020-03-30 08:39:23');
 /*!40000 ALTER TABLE `subcategories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -304,7 +415,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin@admin.com',NULL,'$2y$10$s829qzopsRgL9ALgu6a9PeoHehS391vfm8NN5gHJke/nB6PJfN4Le',NULL,'2020-03-29 18:32:13','2020-03-29 18:32:13');
+INSERT INTO `users` VALUES (1,'admin','admin@admin.com',NULL,'$2y$10$ZMGNW6rkPIvVvbfwbrg.mOWSA3d2GHnnwvWxFWkovFCyjRLu/7bjS',NULL,'2020-04-05 23:03:20','2020-04-05 23:03:20');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -322,6 +433,7 @@ CREATE TABLE `vacancies` (
   `experience` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `payment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `company_id` bigint(20) unsigned DEFAULT NULL,
+  `timer` int(11) DEFAULT NULL,
   `description` longtext COLLATE utf8mb4_unicode_ci,
   `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL,
@@ -330,7 +442,7 @@ CREATE TABLE `vacancies` (
   PRIMARY KEY (`id`),
   KEY `vacancies_company_id_foreign` (`company_id`),
   CONSTRAINT `vacancies_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -339,7 +451,7 @@ CREATE TABLE `vacancies` (
 
 LOCK TABLES `vacancies` WRITE;
 /*!40000 ALTER TABLE `vacancies` DISABLE KEYS */;
-INSERT INTO `vacancies` VALUES (1,'some name',NULL,NULL,NULL,1,NULL,NULL,1,'2020-03-31 17:41:30','2020-03-31 17:41:30'),(2,'Nurlanio',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2020-03-31 18:15:05','2020-03-31 18:15:05');
+INSERT INTO `vacancies` VALUES (1,'asdf asf d',NULL,NULL,NULL,NULL,30,NULL,NULL,1,'2020-04-06 01:49:17','2020-04-06 01:49:17');
 /*!40000 ALTER TABLE `vacancies` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -352,4 +464,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-01  0:30:21
+-- Dump completed on 2020-04-07 14:37:42

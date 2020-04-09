@@ -14,7 +14,11 @@ class QuestionController extends Controller
     public function test(Request $request)
     {
         $data = [];
-        $questions = Question::active()->get();
+
+        $questions = Question::active()->whereHas('vacancies', function($query) use($request) {
+            $query->where('vacancy_id', $request->id);
+        })->get();
+
         if(!$questions)
         {
             return response()->json([
@@ -30,11 +34,5 @@ class QuestionController extends Controller
             'data' => $data,
             'message' => 'OK',
         ]);
-
-        $question = Question::active()->where('id', 1)->firstOrFail();
-        $options = $question->options;
-
-        dd($question, $options);
-
     }
 }

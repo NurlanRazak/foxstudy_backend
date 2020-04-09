@@ -21,4 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('vacancy', 'VacancyController@vacancy');
 Route::post('application', 'VacancyController@application');
 
-Route::get('test', 'QuestionController@test');
+Route::get('test', 'QuestionController@test')->name('test');

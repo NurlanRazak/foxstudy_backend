@@ -33,10 +33,7 @@ class VacancyController extends Controller
     public function application(Request $request)
     {
         $application = Staff::create($request->toArray());
-        return response()->json([
-            'status' => '200',
-            'successfull' =>true
-        ]);
+        return redirect()->route('test', ['id' => $request->vacancy_id]);
         //name, phone_number, email
     }
 }
