@@ -15,3 +15,5 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('question') }}'><i class='nav-icon fa fa-question-circle'></i> {{ trans('admin.question_big') }}</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('option') }}'><i class='nav-icon fa fa-bars'></i> {{ trans_choice('admin.option', 2) }}</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('answer') }}'><i class='nav-icon fa fa-check-circle'></i> {{ trans_choice('admin.answer', 2) }}</a></li>
+
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('user') }}'><i class='nav-icon fa fa-question'></i> Users</a></li>
