@@ -14,7 +14,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $user = User::where('email', $request->email)->first();
-        // dd($user, $request->password);
+
         if($user) {
             if(Hash::check($request->password, $user->password)) {
                 $client = DB::table('oauth_clients')->find(2);
@@ -46,7 +46,34 @@ class AuthController extends Controller
             ])->setStatusCode(422);
         }
 
+    }
 
+    public function register(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|confirmed'
+        ]);
+
+        $data = $request->toArray();
+        $data['password'] = Hash::make($request->password);
+        $user = User::create($data);
+        $client = DB::table('oauth_clients')->find(2);
+        $params = [
+            'grant_type' => 'password',
+            'client_id' => $client->id,
+            'client_secret' => $client->secret,
+            'username' => request('email'),
+            'password' => request('password'),
+            'scope' => '*'
+        ];
+        request()->request->add($params);
+        $proxy = Request::create(
+            '/oauth/token',
+            'POST'
+        );
+        return Route::dispatch($proxy);
 
     }
 
