@@ -12,6 +12,7 @@ return [
         'App\Models\Category',
         'App\Models\Subcategory',
         'App\Models\Course',
+        'App\Models\Company',
     ],
 
     // 'search_driver' => env('APIE_SEARCH_DRIVER', 'bselastic');
