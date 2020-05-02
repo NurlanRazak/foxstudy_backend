@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\PasswordReset;
+use App\Notifications\PasswordResetRequest;
+use App\Notifications\PasswordResetSuccess;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use Carbon;
 
 class AuthController extends Controller
 {
@@ -89,4 +93,103 @@ class AuthController extends Controller
     //         'message' => trans('admin.logged_out'),
     //     ])->setStatusCode(200);
     // }
+
+
+    public function createPasswordReset(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string|email',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if(!$user) {
+            return response()->json([
+                'message' => trans('admin.user_not_found')
+            ])->setStatusCode(404);
+        }
+        $passwordReset = PasswordReset::updateOrCreate(
+            ['email' => $user->email],
+            [
+                'email' => $user->email,
+                'token' => str_random(60),
+            ]
+        );
+
+        if ($user && $passwordReset) {
+            $user->notify(new PasswordResetRequest($passwordReset->token));
+        }
+
+        return response()->json([
+            'message' => trans('admin.token_sent'),
+            'success' => true,
+        ])->setStatusCode(200);
+
+    }
+
+    public function findToken($token)
+    {
+        $passwordReset = PasswordReset::where('token', $token)->first();
+
+        if(!$passwordReset) {
+            return response()->json([
+                'message' => trans('admin.token_invalid'),
+                'success' => false,
+            ])->setStatusCode(404);
+        }
+
+        if(Carbon\Carbon::parse($passwordReset->updated_at)->addMinutes(30)->isPast()) {
+            $passwordReset->delete();
+            return response()->json([
+                'message' => trans('admin.token_invalid'),
+            ])->setStatusCode(404);
+        }
+
+        return response()->json($passwordReset);
+    }
+
+
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'email'    => 'required|string|email',
+            'password' => 'required|string|confirmed',
+            'token'    => 'required|string'
+        ]);
+
+        $passwordReset = PasswordReset::where([
+            ['token', $request->token],
+            ['email', $request->email]
+        ])->first();
+
+        if(!$passwordReset) {
+            return response()->json([
+                'message' => trans('admin.token_invalid'),
+                'success' => false,
+            ])->setStatusCode(404);
+        }
+
+        $user = User::where('email', $passwordReset->email)->firstOrFail();
+
+        if(!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => trans('admin.user_not_found'),
+            ])->setStatusCode(422);
+        }
+
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        $passwordReset->delete();
+
+        $user->notify(new PasswordResetSuccess($passwordReset));
+
+        return response()->json($user);
+    }
+
+    public function updatePassword(Request $request)
+    {
+
+    }
 }
