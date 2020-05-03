@@ -8,15 +8,15 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Manager;
 
-class SendEmailToManager extends Mailable
+class NewSubscriptionNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $feedback;
+    protected $subscription;
 
-    public function __construct($feedback)
+    public function __construct($subscription)
     {
-        $this->feedback = $feedback;
+        $this->subscription = $subscription;
     }
 
     /**
@@ -30,8 +30,8 @@ class SendEmailToManager extends Mailable
 
         return $this->to('nurlan.bboy@gmail.com')
                     ->cc($cc)
-                    ->subject("Отклик с email-a {$this->feedback->email} на сайте Foxstudy.kz")
-                    ->markdown('mail.feedback')
-                    ->with(['feedback' => $this->feedback]);
+                    ->subject("Запись на курс с email-a {$this->subscription->email} на сайте Foxstudy.kz")
+                    ->markdown('mail.subscription')
+                    ->with(['subscription' => $this->subscription]);
     }
 }

@@ -5,6 +5,8 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Course;
+use App\Jobs\SendMailJob;
+use App\Mail\NewSubscriptionNotification;
 
 class Subscription extends Model
 {
@@ -29,14 +31,14 @@ class Subscription extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-    // public static function boot()
-    // {
-    //     parent::boot();
-    //
-    //     static::created(function($subscription) {
-    //         SendMailJob::dispatch()
-    //     });
-    // }
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function($subscription) {
+            SendMailJob::dispatch(new NewSubscriptionNotification($subscription));
+        });
+    }
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
