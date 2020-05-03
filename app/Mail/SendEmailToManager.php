@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Manager;
 
 class SendEmailToManager extends Mailable
 {
@@ -25,9 +26,10 @@ class SendEmailToManager extends Mailable
      */
     public function build()
     {
-        $cc = ['nurlan.adiluly@gmail.com'];
+        $cc = Manager::all()->pluck('email');
 
-        return $this->to($cc)
+        return $this->to('nurlan.bboy@gmail.com')
+                    ->cc($cc)
                     ->subject("Отклик с email-a {$this->feedback->email} на Сайте foxstudy.kz")
                     ->markdown('mail.feedback')
                     ->with(['feedback' => $this->feedback]);
