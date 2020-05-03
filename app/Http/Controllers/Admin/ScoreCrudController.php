@@ -26,6 +26,7 @@ class ScoreCrudController extends CrudController
         $this->crud->setModel('App\Models\Score');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/score');
         $this->crud->setEntityNameStrings(trans_choice('admin.score', 1), trans_choice('admin.score',2));
+        $this->crud->denyAccess(['create']);
     }
 
     protected function setupListOperation()
