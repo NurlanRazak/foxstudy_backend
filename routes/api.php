@@ -13,6 +13,8 @@ Route::post('score', 'QuestionController@scoreTest');
 Route::post('login', 'AuthController@login')->name('login');
 Route::post('register', 'AuthController@register')->name('register');
 
+Route::post('feedback', 'FeedbackController@feedback');
+
 // Route::post('password', 'AuthController@resetPassword');
 // Route::put('password', 'AuthController@updatePassword')->middleware('auth:api');
 
