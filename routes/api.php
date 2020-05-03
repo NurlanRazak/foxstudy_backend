@@ -8,6 +8,7 @@ Route::get('vacancy', 'VacancyController@vacancy');
 Route::post('application', 'VacancyController@application');
 
 Route::get('test', 'QuestionController@test')->name('test');
+Route::post('score', 'QuestionController@scoreTest');
 
 Route::post('login', 'AuthController@login')->name('login');
 Route::post('register', 'AuthController@register')->name('register');

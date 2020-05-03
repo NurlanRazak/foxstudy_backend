@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Vacancy;
-use App\Models\Option;
-use App\Models\Answer;
 
-class Question extends Model
+use App\Models\Staff;
+use App\Models\Vacancy;
+
+class Score extends Model
 {
     use CrudTrait;
 
@@ -17,18 +17,12 @@ class Question extends Model
     | GLOBAL VARIABLES
     |--------------------------------------------------------------------------
     */
-    const PUBLISHED = 1;
-    const DRAFT = 0;
 
-    protected $table = 'questions';
+    protected $table = 'scores';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    protected $fillable = ['name', 'extras', 'status'];
-    protected $fakeColumns = ['extras'];
-    protected $casts = [
-        'extras' => 'array'
-    ];
+    protected $fillable = ['staff_id', 'vacancy_id', 'score', 'extras'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -43,42 +37,26 @@ class Question extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function vacancies()
+    public function staff()
     {
-        return $this->belongsToMany(Vacancy::class, 'question_vacancy', 'question_id', 'vacancy_id');
+        return $this->belongsTo(Staff::class, 'staff_id');
     }
 
-    public function options()
+    public function vacancy()
     {
-        return $this->hasMany(Option::class);
-    }
-
-    public function answers()
-    {
-        return $this->hasMany(Answer::class, 'question_id');
+        return $this->belongsTo(Vacancy::class, 'vacancy_id');
     }
     /*
     |--------------------------------------------------------------------------
     | SCOPES
     |--------------------------------------------------------------------------
     */
-    public function scopeActive($query)
-    {
-        $query->where('status', static::PUBLISHED);
-    }
 
     /*
     |--------------------------------------------------------------------------
     | ACCESSORS
     |--------------------------------------------------------------------------
     */
-    public static function getStatusOptions() : array
-    {
-        return [
-            static::PUBLISHED => trans('admin.published'),
-            static::DRAFT => trans('admin.draft'),
-        ];
-    }
 
     /*
     |--------------------------------------------------------------------------
