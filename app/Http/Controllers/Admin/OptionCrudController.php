@@ -32,6 +32,11 @@ class OptionCrudController extends CrudController
     {
         $this->crud->addColumns([
             [
+                'name' => 'row_number',
+                'label' => '#',
+                'type' => 'row_number',
+            ],
+            [
                 'name' => 'option',
                 'label' => trans('admin.option_title'),
             ],

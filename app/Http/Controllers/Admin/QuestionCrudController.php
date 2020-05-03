@@ -33,6 +33,11 @@ class QuestionCrudController extends CrudController
     {
         $this->crud->addColumns([
             [
+                'name' => 'row_number',
+                'label' => '#',
+                'type' => 'row_number',
+            ],
+            [
                 'name' => 'name',
                 'label' => trans('admin.name'),
             ],

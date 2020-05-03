@@ -33,6 +33,11 @@ class AnswerCrudController extends CrudController
     {
         $this->crud->addColumns([
             [
+                'name' => 'row_number',
+                'label' => '#',
+                'type' => 'row_number',
+            ],
+            [
                 'name' => 'option_id',
                 'label' => trans_choice('admin.answer', 1),
                 'type' => 'select',

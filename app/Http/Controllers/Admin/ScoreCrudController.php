@@ -33,6 +33,11 @@ class ScoreCrudController extends CrudController
     {
         $this->crud->addColumns([
             [
+                'name' => 'row_number',
+                'label' => '#',
+                'type' => 'row_number',
+            ],
+            [
                 'name' => 'staff_id',
                 'label' => trans('admin.name'),
                 'type' => 'select',
