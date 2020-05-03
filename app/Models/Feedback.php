@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use App\Jobs\SendMailJob;
+use App\Mail\SendEmailToManager;
 
 class Feedback extends Model
 {
@@ -28,7 +30,14 @@ class Feedback extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+    public static function boot()
+    {
+        parent::boot();
 
+        static::created(function($feedback) {
+            SendMailJob::dispatch(new SendEmailToManager($feedback));
+        });
+    }
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
