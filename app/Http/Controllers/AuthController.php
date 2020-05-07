@@ -52,13 +52,14 @@ class AuthController extends Controller
 
     }
 
+
     public function register(Request $request)
     {
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6|confirmed'
-        ]);
+        ], $this->customMessages());
 
         $data = $request->toArray();
         $data['password'] = Hash::make($request->password);
@@ -97,9 +98,9 @@ class AuthController extends Controller
 
     public function createPasswordReset(Request $request)
     {
-        $request->validate([
+        $request->validate($request,[
             'email' => 'required|string|email',
-        ]);
+        ], $this->customMessages());
 
         $user = User::where('email', $request->email)->first();
 
@@ -151,11 +152,11 @@ class AuthController extends Controller
 
     public function resetPassword(Request $request)
     {
-        $request->validate([
+        $request->validate($request, [
             'email'    => 'required|string|email',
             'password' => 'required|string|confirmed',
             'token'    => 'required|string'
-        ]);
+        ], $this->customMessages());
 
         $passwordReset = PasswordReset::where([
             ['token', $request->token],
@@ -192,4 +193,14 @@ class AuthController extends Controller
     {
 
     }
+    private function customMessages()
+    {
+        return  [
+            'required' => trans('admin.name_required'),
+            'unique' => trans('admin.validation_unique'),
+            'confirmed' => trans('admin.password_confirmed'),
+        ];
+    }
+
+
 }
