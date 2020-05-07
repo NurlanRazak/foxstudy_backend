@@ -199,6 +199,7 @@ class AuthController extends Controller
             'required' => trans('admin.name_required'),
             'unique' => trans('admin.validation_unique'),
             'confirmed' => trans('admin.password_confirmed'),
+            'min'   => trans('admin.min_string'),
         ];
     }
 

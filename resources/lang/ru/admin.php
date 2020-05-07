@@ -60,4 +60,5 @@ return [
     'name_required' => 'Поле :attribute обязательно',
     'password_confirmed' => 'Пароль не совпадает',
     'validation_unique' => 'Такой :attribute уже существует',
+    'min_string' => ':attribute должен быть больше 6-ти символов',
 ];
