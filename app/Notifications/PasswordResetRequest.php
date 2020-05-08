@@ -40,7 +40,7 @@ class PasswordResetRequest extends Notification
     public function toMail($notifiable)
     {
         // $url = "https://foxstudy.kz/api/password/find/'.$this->token";
-        $url = "https://foxstudy.kz/password_reset?token={$this->token}?email={$this->email}";
+        $url = "https://foxstudy.kz/password_reset?token={$this->token}&&email={$this->email}";
 
         return (new MailMessage)
                     ->line('Вы получили это письмо, потому что мы получили запрос на сброс пароля для вашей учетной записи.')

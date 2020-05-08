@@ -98,7 +98,7 @@ class AuthController extends Controller
 
     public function createPasswordReset(Request $request)
     {
-        $request->validate($request,[
+        $this->validate($request,[
             'email' => 'required|string|email',
         ], $this->customMessages());
 
@@ -152,7 +152,7 @@ class AuthController extends Controller
 
     public function resetPassword(Request $request)
     {
-        $request->validate($request, [
+        $this->validate($request, [
             'email'    => 'required|string|email',
             'password' => 'required|string|confirmed',
             'token'    => 'required|string'
