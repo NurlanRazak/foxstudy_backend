@@ -19,6 +19,6 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('feedback') }}'><i class='nav-icon fa fa-commenting-o'></i> {{ trans_choice('admin.feedback',2) }}</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('manager') }}'><i class='nav-icon fa fa-user'></i> {{ trans_choice('admin.managers', 2) }}</a></li>
 
-<!-- <li class='nav-item'><a class='nav-link' href='{{ backpack_url('user') }}'><i class='nav-icon fa fa-question'></i> Users</a></li> -->
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('user') }}'><i class='nav-icon fa fa-question'></i> Users</a></li>
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('subscription') }}'><i class='nav-icon fa fa-plus-square'></i> {{ trans_choice('admin.subscription', 2) }}</a></li>

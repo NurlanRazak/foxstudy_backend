@@ -12,10 +12,12 @@ class PasswordResetRequest extends Notification
     use Queueable;
 
     protected $token;
+    protected $email;
 
-    public function __construct($token)
+    public function __construct($token, $email)
     {
         $this->token = $token;
+        $this->email = $email;
     }
 
     /**
@@ -37,11 +39,12 @@ class PasswordResetRequest extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = url('/api/password/find/'.$this->token);
+        // $url = "https://foxstudy.kz/api/password/find/'.$this->token";
+        $url = "https://foxstudy.kz/password_reset?token={$this->token}?email={$this->email}";
 
         return (new MailMessage)
                     ->line('Вы получили это письмо, потому что мы получили запрос на сброс пароля для вашей учетной записи.')
-                    ->action('Восстановить пароль', url($url))
+                    ->action('Восстановить пароль', $url)
                     ->line('Если вы не запрашивали сброс пароля, никаких дальнейших действий не требуется.');
     }
 
