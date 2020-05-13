@@ -18,6 +18,7 @@ Route::post('subscription', 'SubscriptionController@subscription');
 // Route::post('password', 'AuthController@resetPassword');
 // Route::put('password', 'AuthController@updatePassword')->middleware('auth:api');
 Route::get('categories', 'CategoryController@index');
+Route::get('subcategories', 'CategoryController@subcategories');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
