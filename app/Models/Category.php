@@ -5,6 +5,8 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Subcategory;
+
 class Category extends Model
 {
     use CrudTrait;
@@ -36,7 +38,10 @@ class Category extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function subcategories()
+    {
+        return $this->hasMany(Subcategory::class, 'category_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES
