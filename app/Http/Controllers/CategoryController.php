@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Models\Category;
 use App\Models\Subcategory;
+use App\Models\Course;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\SubcategoryResource;
+use App\Http\Resources\CourseResource;
 
 class CategoryController extends Controller
 {
@@ -55,5 +57,33 @@ class CategoryController extends Controller
             'data' => $data,
             'message' => 'Yo, u got it.',
         ]);
+    }
+
+    public function courses(Request $request)
+    {
+        $data = [];
+
+        $courses = Course::get();
+
+
+        if(!$courses) {
+            return response()->json([
+                'message' => 'Not Found',
+            ], 404);
+        }
+
+        foreach ($courses as $course) {
+            $data[] = new CourseResource($course);
+        }
+        return response()->json([
+            'data' => $data,
+            'message' => 'good',
+        ]);
+    }
+
+    public function course(Request $request, string $course_id)
+    {
+        $course = Course::where('id', $course_id)->first();
+        return new CourseResource($course);
     }
 }
