@@ -18,7 +18,7 @@ class SubcategoryResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'image' => $this->image,
+            'image' => url('uploads/'.$this->image),
             'courses' => CourseResource::collection($this->courses),
             // 'created_at' => $this->created_at,
             // 'updated_at' => $this->updated_at,
