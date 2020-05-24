@@ -92,7 +92,7 @@ class CategoryController extends Controller
         if (!$request->q) {
             abort(400, 'q is required');
         }
-        $query = Product::search($request->q);
+        $query = Course::search($request->q);
 
         return response()->json($request->per_page ? $query->paginate($request->per_page) : $query->get());
     }
