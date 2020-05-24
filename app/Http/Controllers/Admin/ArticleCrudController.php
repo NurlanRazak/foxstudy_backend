@@ -40,6 +40,7 @@ class ArticleCrudController extends CrudController
                 'name' => 'image',
                 'label' => trans('admin.image'),
                 'type' => 'image',
+                'prefix' => 'uploads/',
                 'width' => '150px',
                 'height' => 'auto',
             ],
