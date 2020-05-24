@@ -92,7 +92,8 @@ class CategoryController extends Controller
         if (!$request->q) {
             abort(400, 'q is required');
         }
-        $query = Course::search($request->q);
+        $query = Course::where('name', 'LIKE', '%'.$request->q.'%')
+                        ->orWhere('short_description', 'LIKE', '%'.$request->q.'%')->get();
 
         return response()->json($request->per_page ? $query->paginate($request->per_page) : $query->get());
     }
