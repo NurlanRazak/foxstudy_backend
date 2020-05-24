@@ -18,7 +18,7 @@ class CategoryController extends Controller
     {
         $data = [];
 
-        $categories = Category::active()->get();
+        $categories = Category::active()->orderBy('lft')->get();
 
         if(!$categories)
         {
@@ -41,7 +41,7 @@ class CategoryController extends Controller
     {
         $data = [];
 
-        $subcategories = Subcategory::active()->get();
+        $subcategories = Subcategory::active()->orderBy('lft')->get();
 
         if(!$subcategories) {
             return response()->json([
