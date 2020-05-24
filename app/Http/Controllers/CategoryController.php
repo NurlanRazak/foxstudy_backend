@@ -86,4 +86,14 @@ class CategoryController extends Controller
         $course = Course::where('id', $course_id)->first();
         return new CourseResource($course);
     }
+
+    public function search(Request $request)
+    {
+        if (!$request->q) {
+            abort(400, 'q is required');
+        }
+        $query = Product::search($request->q);
+
+        return response()->json($request->per_page ? $query->paginate($request->per_page) : $query->get());
+    }
 }

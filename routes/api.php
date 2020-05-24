@@ -23,6 +23,8 @@ Route::get('subcategories', 'CategoryController@subcategories');
 Route::get('courses', 'CategoryController@courses');
 Route::get('courses/{course_id}', 'CategoryController@course');
 
+Route::get('search', 'CategoryController@search');
+
 Route::get('articles', 'ContentController@articles');
 Route::get('articles/{article_id}', 'ContentController@article');
 
