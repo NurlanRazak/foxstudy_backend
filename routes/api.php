@@ -23,6 +23,9 @@ Route::get('subcategories', 'CategoryController@subcategories');
 Route::get('courses', 'CategoryController@courses');
 Route::get('courses/{course_id}', 'CategoryController@course');
 
+Route::get('articles', 'ContentController@articles');
+Route::get('articles/{article_id}', 'ContentController@article');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
