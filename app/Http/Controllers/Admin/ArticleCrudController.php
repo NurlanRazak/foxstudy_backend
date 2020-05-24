@@ -19,12 +19,14 @@ class ArticleCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ReorderOperation;
 
     public function setup()
     {
         $this->crud->setModel(Article::class);
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/article');
         $this->crud->setEntityNameStrings(trans_choice('admin.article',1), trans_choice('admin.article',2));
+        $this->crud->addClause('orderBy', 'lft');
     }
 
     protected function setupListOperation()
@@ -92,5 +94,11 @@ class ArticleCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    protected function setupReorderOperation()
+    {
+        $this->crud->set('reorder.label', 'name');
+        $this->crud->set('reorder.max_level', 1);
     }
 }
