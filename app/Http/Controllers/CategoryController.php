@@ -110,6 +110,12 @@ class CategoryController extends Controller
         ]);
     }
 
+    public function lesson(Request $request, string $lesson_id)
+    {
+        $lesson = Lesson::where('id', $lesson_id)->first();
+        return new LessonResource($lesson);
+    }
+
     public function search(Request $request)
     {
         if (!$request->q) {
