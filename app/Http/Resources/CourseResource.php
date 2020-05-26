@@ -24,6 +24,7 @@ class CourseResource extends JsonResource
             'map' => $this->map,
             'rating' => $this->rating,
             'trial' => $this->trial,
+            'lessons' => LessonResource::collection($this->lessons),
             'subcategory_id' => $this->subcategory->name,
             'at_morning' => $this->at_morning,
             'at_afternoon' => $this->at_afternoon,
