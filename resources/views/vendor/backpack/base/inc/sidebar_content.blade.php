@@ -3,6 +3,7 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('category') }}'><i class='nav-icon fa fa-list'></i> {{ trans_choice('admin.category', 2) }}</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('subcategory') }}'><i class='nav-icon fa fa-list-alt'></i> {{ trans_choice('admin.subcategory', 2) }}</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('course') }}'><i class='nav-icon fa fa-desktop'></i> {{ trans_choice('admin.course', 2) }}</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('lesson') }}'><i class='nav-icon fa fa-book'></i> {{ trans_choice('admin.lesson', 2) }}</a></li>
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('article') }}'><i class='nav-icon fa fa-newspaper-o'></i> {{ trans_choice('admin.article', 2) }} </a></li>
 

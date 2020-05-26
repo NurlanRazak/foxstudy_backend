@@ -16,8 +16,10 @@ return [
     'managers' => 'менеджера|Менеджеры',
     'subscription' => 'запись на Курсы|Записи на курсы',
     'article'   => 'новость|Новости',
-    'subscription_success' => 'Вы успешно записались на курс',
+    'lesson' => 'урок|Уроки',
 
+
+    'subscription_success' => 'Вы успешно записались на курс',
     'res_score' => 'Количество очков',
     'vacancy_name' => 'Вакансия',
     'name' => 'Название',
@@ -27,6 +29,7 @@ return [
     'email' => 'Email',
     'phone_number' => 'Номер телефона',
     'images' => 'Изображения',
+    'video' => 'Видео',
     'description' => 'Описание',
     'link' => 'URL',
     'short_description' => 'Краткое описание',
