@@ -22,6 +22,7 @@ class AuthController extends Controller
         $user = $request->user();
         $course_ids = [];
         $course_collection = [];
+        $courses = [];
         foreach($user->subscriptions as $subscription) {
             $course_ids[] = $subscription->course_id;
         }
@@ -32,8 +33,12 @@ class AuthController extends Controller
             $course_collection = Course::find($course_ids);
         }
 
+        foreach($course_collection as $course) {
+            $courses[] =  new CourseResource($course);
+        }
+
         $data['user'] = $user;
-        $data['courses'] = $course_collection ?? null;
+        $data['courses'] = $courses ?? null;
         return response()->json($data);
     }
 
