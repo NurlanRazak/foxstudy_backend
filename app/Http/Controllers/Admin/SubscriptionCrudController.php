@@ -6,6 +6,7 @@ use App\Http\Requests\SubscriptionRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use App\Models\Course;
+use App\User;
 
 /**
  * Class SubscriptionCrudController
@@ -52,6 +53,14 @@ class SubscriptionCrudController extends CrudController
                 'model' => Course::class,
             ],
             [
+                'name' => 'user_id',
+                'label' => trans('admin.user'),
+                'type' => 'select',
+                'entity' => 'user',
+                'attribute' => 'email',
+                'model' => User::class,
+            ],
+            [
                 'name' => 'email',
                 'label' => 'Email',
             ],
@@ -71,7 +80,7 @@ class SubscriptionCrudController extends CrudController
                 'name' => 'phone_number',
                 'label' => trans('admin.phone_number'),
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-4'
+                    'class' => 'form-group col-md-6'
                 ],
             ],
             [
@@ -82,14 +91,25 @@ class SubscriptionCrudController extends CrudController
                 'attribute' => 'name',
                 'model' => Course::class,
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-4'
+                    'class' => 'form-group col-md-6'
+                ],
+            ],
+            [
+                'name' => 'user_id',
+                'label' => trans('admin.user'),
+                'type' => 'select',
+                'entity' => 'user',
+                'attribute' => 'email',
+                'model' => User::class,
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-6'
                 ],
             ],
             [
                 'name' => 'email',
                 'label' => 'Email',
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-4'
+                    'class' => 'form-group col-md-6'
                 ],
             ],
         ]);

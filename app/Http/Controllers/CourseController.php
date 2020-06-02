@@ -19,6 +19,7 @@ class CourseController extends Controller
         $data['phone_number'] = $user->phone ?? null;
         $data['email'] = $user->email ?? null;
         $data['user_id'] = $user->id;
+        $data['course_id'] = $course_id;
 
         $subscription = Subscription::create($data);
 
