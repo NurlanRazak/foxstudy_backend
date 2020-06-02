@@ -11,14 +11,25 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Carbon;
+use App\Models\Course;
+use App\Http\Resources\CourseResource;
 
 class AuthController extends Controller
 {
 
     public function getUser(Request $request)
     {
-        return response()->json(request()->user());
-        dd($request);
+        $user = $request->user();
+
+        foreach($user->subscriptions as $subscription) {
+            $course_ids[] = $subscription->course_id;
+        }
+
+        $course_collection = Course::find($course_ids);
+
+        $data['user'] = $user;
+        $data['courses'] = $course_collection;
+        return response()->json($data);
     }
 
     public function login(Request $request)
