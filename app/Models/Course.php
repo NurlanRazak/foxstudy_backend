@@ -30,7 +30,7 @@ class Course extends Model
         'image', 'images',
         'subcategory_id',
         'map', 'rating', 'trial',
-        'at_morning', 'at_afternoon', 'at_evening',
+        'duration', 'price', 'type_course', 'frequency', 'about_center',
         'status'
     ];
     protected $fakeColumns = ['map'];

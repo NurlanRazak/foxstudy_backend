@@ -131,27 +131,43 @@ class CourseCrudController extends CrudController
                 ],
             ],
             [
-                'name' => 'at_morning',
-                'label' => trans('admin.at_morning'),
-                'type' => 'textarea',
+                'name' => 'duration',
+                'label' => trans('admin.duration'),
+                'type' => 'text',
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-4'
                 ],
             ],
             [
-                'name' => 'at_afternoon',
-                'label' => trans('admin.at_afternoon'),
-                'type' => 'textarea',
+                'name' => 'type_course',
+                'label' => trans('admin.type_course'),
+                'type' => 'text',
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-4'
                 ],
             ],
             [
-                'name' => 'at_evening',
-                'label' => trans('admin.at_evening'),
-                'type' => 'textarea',
+                'name' => 'price',
+                'label' => trans('admin.price'),
+                'type' => 'text',
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-4'
+                ],
+            ],
+            [
+                'name' => 'frequency',
+                'label' => trans('admin.frequency'),
+                'type' => 'text',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-sm-6',
+                ],
+            ],
+            [
+                'name' => 'about_center',
+                'label' => trans('admin.about_center'),
+                'type' => 'textarea',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-sm-6',
                 ],
             ],
             [
