@@ -39,7 +39,7 @@ Route::group([
     'middleware' => ['auth:api'],
 ], function() {
     Route::get('user', 'AuthController@getUser');
-
+    Route::post('course-subscription', 'CourseController@subscription');
 });
 
 
