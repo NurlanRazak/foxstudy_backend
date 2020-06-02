@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+Route::post('payment-result', 'CourseController@result')->name('payment-result');
+
 
 Route::get('vacancy', 'VacancyController@vacancy');
 Route::post('application', 'VacancyController@application');
