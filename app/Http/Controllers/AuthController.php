@@ -20,15 +20,20 @@ class AuthController extends Controller
     public function getUser(Request $request)
     {
         $user = $request->user();
-
+        $course_ids = [];
+        $course_collection = [];
         foreach($user->subscriptions as $subscription) {
             $course_ids[] = $subscription->course_id;
         }
 
-        $course_collection = Course::find($course_ids);
+        if($course_ids == null) {
+            return response()->json($user);
+        } else {
+            $course_collection = Course::find($course_ids);
+        }
 
         $data['user'] = $user;
-        $data['courses'] = $course_collection;
+        $data['courses'] = $course_collection ?? null;
         return response()->json($data);
     }
 
