@@ -11,7 +11,6 @@ class CourseController extends Controller
 
     public function subscription(Request $request)
     {
-                dd('here');
         $user = $request->user();
 
         $course_id = $request->course;
