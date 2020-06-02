@@ -119,12 +119,12 @@ class Lesson extends Model
         }
     }
 
-    public function setVideoAttribute($value)
-    {
-        $attribute_name = "video";
-        $disk = "uploads";
-        $destination_path = "lesson";
-
-        $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path);
-    }
+    // public function setVideoAttribute($value)
+    // {
+    //     $attribute_name = "video";
+    //     $disk = "uploads";
+    //     $destination_path = "lesson";
+    //
+    //     $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path);
+    // }
 }

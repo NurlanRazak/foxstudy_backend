@@ -82,9 +82,7 @@ class LessonCrudController extends CrudController
             [
                 'name' => 'video',
                 'label' => trans('admin.video'),
-                'type' => 'upload',
-                'upload' => true,
-                'disk' => 'uploads',
+                'type' => 'text',
             ],
             [
                 'name' => 'description',
