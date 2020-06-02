@@ -23,7 +23,7 @@ class Subscription extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    protected $fillable = ['name', 'phone_number', 'email', 'course_id'];
+    protected $fillable = ['name', 'phone_number', 'email', 'course_id', 'user_id'];
     // protected $hidden = [];
     // protected $dates = [];
 
