@@ -31,8 +31,17 @@ Route::get('search', 'CategoryController@search');
 Route::get('articles', 'ContentController@articles');
 Route::get('articles/{article_id}', 'ContentController@article');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return response()->json(request()->user());
+// });
+// Route::get('user', 'AuthController@getUser');
+
+Route::group([
+    'middleware' => ['user_accessible'],
+], function() {
+    Route::get('user', 'AuthController@getUser');
+
+//     Route::get('user', 'AuthController@getUser');
 });
 
 

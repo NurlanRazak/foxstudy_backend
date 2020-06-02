@@ -15,6 +15,12 @@ use Carbon;
 class AuthController extends Controller
 {
 
+    public function getUser(Request $request)
+    {
+        return response()->json(request()->user());
+        dd($request);
+    }
+
     public function login(Request $request)
     {
         $user = User::where('email', $request->email)->first();
