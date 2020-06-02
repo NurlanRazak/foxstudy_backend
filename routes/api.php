@@ -34,14 +34,12 @@ Route::get('articles/{article_id}', 'ContentController@article');
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return response()->json(request()->user());
 // });
-// Route::get('user', 'AuthController@getUser');
 
 Route::group([
-    'middleware' => ['user_accessible'],
+    'middleware' => ['auth:api'],
 ], function() {
     Route::get('user', 'AuthController@getUser');
 
-//     Route::get('user', 'AuthController@getUser');
 });
 
 
