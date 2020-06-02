@@ -18,12 +18,14 @@ class Subscription extends Model
     | GLOBAL VARIABLES
     |--------------------------------------------------------------------------
     */
+    const NOT_PAID = 0;
+    const PAID = 1;
 
     protected $table = 'subscriptions';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
-    protected $fillable = ['name', 'phone_number', 'email', 'course_id', 'user_id'];
+    protected $fillable = ['name', 'phone_number', 'email', 'course_id', 'user_id', 'payment_status'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -65,7 +67,13 @@ class Subscription extends Model
     | ACCESSORS
     |--------------------------------------------------------------------------
     */
-
+    public static function getPaymentStatusOptions() : array
+    {
+        return [
+            static::NOT_PAID    => trans('admin.not_paid'),
+            static::PAID        => trans('admin.paid'),
+        ];
+    }
     /*
     |--------------------------------------------------------------------------
     | MUTATORS

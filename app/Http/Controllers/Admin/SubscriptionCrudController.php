@@ -7,6 +7,7 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use App\Models\Course;
 use App\User;
+use App\Models\Subscription;
 
 /**
  * Class SubscriptionCrudController
@@ -39,6 +40,12 @@ class SubscriptionCrudController extends CrudController
             [
                 'name' => 'name',
                 'label' => trans('admin.name'),
+            ],
+            [
+                'name' => 'payment_status',
+                'label' => trans('admin.payment_status'),
+                'type' => 'select_from_array',
+                'options' => Subscription::getPaymentStatusOptions(),
             ],
             [
                 'name' => 'phone_number',
@@ -110,6 +117,15 @@ class SubscriptionCrudController extends CrudController
                 'label' => 'Email',
                 'wrapperAttributes' => [
                     'class' => 'form-group col-md-6'
+                ],
+            ],
+            [
+                'name' => 'payment_status',
+                'label' => trans('admin.payment_status'),
+                'type' => 'select2_from_array',
+                'options' => Subscription::getPaymentStatusOptions(),
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-sm-12',
                 ],
             ],
         ]);
