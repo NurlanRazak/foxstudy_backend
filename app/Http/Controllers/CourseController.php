@@ -19,7 +19,7 @@ class CourseController extends Controller
         $data['name'] = $user->name ?? null;
         $data['phone_number'] = $user->phone ?? null;
         $data['email'] = $user->email ?? null;
-        $data['user_id'] = $user->id;
+        // $data['user_id'] = $user->id;
         $data['course_id'] = $course_id;
         $exists = Subscription::where('course_id', $course_id)->where('user_id', $user->id)->first();
 
@@ -32,7 +32,7 @@ class CourseController extends Controller
         $subscription = Subscription::create($data);
         $course = Course::find($course_id);
 
-        return $this->checkout($subscription->id, $course);
+        return $this->checkout($subscription->id, $course, $user->id);
 
         return response()->json([
             'success' => true,
@@ -40,9 +40,9 @@ class CourseController extends Controller
         ]);
     }
 
-    private function checkout($subscription_id, $course)
+    private function checkout($subscription_id, $course, $user_id)
     {
-        $description = 'test' ?? $course->name;
+        $description = $course->name ?? 'test';
 
         $url = 'https://api.paybox.money/payment.php';
 
@@ -54,7 +54,8 @@ class CourseController extends Controller
             'pg_description' => $description, //will be shown to client in process of payment, required
             'pg_result_url' => route('payment-result'),//route('payment-result')
             'pg_testing_mode' => 1,
-            'pg_success_url' => 'https://foxstudy.kz'
+            'pg_success_url' => 'https://foxstudy.kz',
+            'pg_param1' => $user_id,
         ];
 
         ksort($data);
@@ -75,9 +76,10 @@ class CourseController extends Controller
 
     public function result(Request $request)
     {
-        if ($request->pg_result) {
+        if ($request->pg_result && $request->pg_param1) {
             $order = Subscription::where('id', (int)$request->pg_order_id)->firstOrFail();
             $order->payment_status = Subscription::PAID;
+            $order->user_id = $request->pg_param1;
             $order->save();
             return response()->json([
                 'message' => 'ok',
