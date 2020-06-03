@@ -35,7 +35,7 @@ class CourseController extends Controller
 
     private function checkout($subscription_id, $course)
     {
-        $description = $course->name;
+        $description = 'test' ?? $course->name;
 
         $url = 'https://api.paybox.money/payment.php';
 
