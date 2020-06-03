@@ -21,7 +21,7 @@ class HomeworkResource extends JsonResource
             'file' => url('uploads/'.$this->file),
             'lesson' => $this->lesson->name,
             'grade' => $this->grade,
-            'deadline' => $this->deadline_at,
+            'deadline' => $this->deadline_at->format('l H:m:s'),
         ];
     }
 }
