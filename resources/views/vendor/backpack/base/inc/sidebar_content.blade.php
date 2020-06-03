@@ -25,3 +25,5 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('user') }}'><i class='nav-icon fa fa-question'></i> Users</a></li>
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('subscription') }}'><i class='nav-icon fa fa-plus-square'></i> {{ trans_choice('admin.subscription', 2) }}</a></li>
+
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('homework') }}'><i class='nav-icon fa fa-pencil-square-o'></i> {{ trans_choice('admin.homeworks', 2) }}</a></li>

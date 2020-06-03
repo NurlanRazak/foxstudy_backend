@@ -79,7 +79,7 @@ class Course extends Model
     */
     public function scopeActive($query)
     {
-        $query->where('active', static::PUBLISHED);
+        $query->where('status', static::PUBLISHED);
     }
 
     public function scopeTrial($query)
