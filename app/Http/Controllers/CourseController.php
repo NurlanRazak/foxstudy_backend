@@ -47,6 +47,7 @@ class CourseController extends Controller
         $url = 'https://api.paybox.money/payment.php';
 
         $data = [
+            'extra_user_id' => $user_id,
             'pg_merchant_id' => 529398,//our id in Paybox, will be gived on contract
             'pg_amount' => $course->price, //amount of payment
             'pg_salt' => 'some string', //random string, required
@@ -55,7 +56,6 @@ class CourseController extends Controller
             'pg_result_url' => route('payment-result'),//route('payment-result')
             'pg_testing_mode' => 1,
             'pg_success_url' => 'https://foxstudy.kz/cabinet?success=true',
-            'pg_param1' => $user_id,
         ];
 
         ksort($data);
@@ -76,10 +76,10 @@ class CourseController extends Controller
 
     public function result(Request $request)
     {
-        if ($request->pg_result && $request->pg_param1) {
+        if ($request->pg_result) {
             $order = Subscription::where('id', (int)$request->pg_order_id)->firstOrFail();
+            $order->user_id = (int)$request->extra_user_id;
             $order->payment_status = Subscription::PAID;
-            $order->user_id = $request->pg_param1;
             $order->save();
             return response()->json([
                 'message' => 'ok',
