@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Subscription;
 use App\Models\Course;
+use Illuminate\Support\Facades\Log;
 
 class CourseController extends Controller
 {
@@ -76,9 +77,10 @@ class CourseController extends Controller
 
     public function result(Request $request)
     {
+        Log::info($request->toArray());
         if ($request->pg_result) {
             $order = Subscription::where('id', (int)$request->pg_order_id)->firstOrFail();
-            $order->user_id = (int)$request->extra_user_id;
+            $order->user_id = (int)$user_id;
             $order->payment_status = Subscription::PAID;
             $order->save();
             return response()->json([
