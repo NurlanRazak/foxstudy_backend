@@ -5,6 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Course;
+use App\Models\Homework;
 use Str;
 
 class Lesson extends Model
@@ -51,6 +52,11 @@ class Lesson extends Model
     public function course()
     {
         return $this->belongsTo(Course::class, 'course_id');
+    }
+
+    public function homeworks()
+    {
+        return $this->hasMany(Homework::class, 'lesson_id');
     }
     /*
     |--------------------------------------------------------------------------
