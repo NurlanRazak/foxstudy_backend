@@ -26,7 +26,7 @@ class Homework extends Model
     protected $guarded = ['id'];
     protected $fillable = [
         'name', 'description', 'file',
-        'lesson_id', 'status', 'deadline_at', 'user_id'
+        'lesson_id', 'status', 'deadline_at', 'user_id', 'grade'
     ];
     // protected $hidden = [];
     protected $dates = ['deadline_at'];

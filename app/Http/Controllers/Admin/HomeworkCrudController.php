@@ -65,6 +65,10 @@ class HomeworkCrudController extends CrudController
                 'format' => 'l H:m:s',
             ],
             [
+                'name' => 'grade',
+                'label' => trans('admin.grade'),
+            ],
+            [
                 'name' => 'file',
                 'label' => trans('admin.file'),
                 'type' => 'model_function',
@@ -116,6 +120,11 @@ class HomeworkCrudController extends CrudController
                 'entity' => 'user',
                 'attribute' => 'email',
                 'model' => User::class,
+            ],
+            [
+                'name' => 'grade',
+                'label' => trans('admin.grade'),
+                'type' => 'number',
             ],
             [   // DateTime
                 'name'  => 'deadline_at',

@@ -27,6 +27,8 @@ class CreateHomeworksTable extends Migration
 
             $table->timestamp('deadline_at')->default(\Carbon\Carbon::now());
 
+            $table->integer('grade')->nullable();
+
             $table->tinyInteger('status')->default(0);
             $table->integer('parent_id')->default(0)->nullable();
             $table->integer('lft')->unsigned()->nullable();

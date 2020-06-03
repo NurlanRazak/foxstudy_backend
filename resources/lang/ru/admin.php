@@ -59,6 +59,7 @@ return [
     'file' => 'Файл',
     'deadline_at' => 'Дедлайн',
     'course_exists' => 'Курс у вас уже существует',
+    'grade' => 'Оценка',
 
     'status' => 'Статус',
     'published' => 'Опубликован',
