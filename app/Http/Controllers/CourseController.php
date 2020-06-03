@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Subscription;
 use App\Models\Homework;
+use App\Http\Resources\HomeworkResource;
 use App\Models\Course;
 use Illuminate\Support\Facades\Log;
 
@@ -114,5 +115,22 @@ class CourseController extends Controller
             'message' => 'ok',
             'success' => true
         ])->setStatusCode(200);
+    }
+
+    public function userHomeworks(Request $request)
+    {
+        $user = $request->user();
+        $homeworks = Homework::where('user_id', $user->id)->get();
+
+        $data = [];
+
+        foreach($homeworks as $homework) {
+            $data[] = new HomeworkResource($homework);
+        }
+
+        return response()->json([
+            'data' => $data,
+            'message' => 'OK, keep going, u doing well.',
+        ]);
     }
 }
