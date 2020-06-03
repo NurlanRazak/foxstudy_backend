@@ -20,6 +20,7 @@ class HomeworkResource extends JsonResource
             'description' => $this->description,
             'file' => url('uploads/'.$this->file),
             'lesson' => $this->lesson->name,
+            'grade' => $this->grade,
             'deadline' => $this->deadline_at,
         ];
     }
