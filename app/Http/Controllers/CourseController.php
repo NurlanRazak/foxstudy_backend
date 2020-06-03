@@ -25,7 +25,7 @@ class CourseController extends Controller
         $subscription = Subscription::create($data);
         $course = Course::find($course_id);
 
-        // return $this->checkout($subscription->id, $course);
+        return $this->checkout($subscription->id, $course);
 
         return response()->json([
             'success' => true,
