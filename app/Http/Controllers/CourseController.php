@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Subscription;
+use App\Models\Homework;
 use App\Models\Course;
 use Illuminate\Support\Facades\Log;
 
@@ -93,5 +94,20 @@ class CourseController extends Controller
             'message' => 'fail in life',
             'success' => false
         ])->setStatusCode(400);
+    }
+
+
+    public function uploadHomework(Request $request)
+    {
+        $user = $request->user();
+        $homework = Homework::find($request->homework_id);
+        if(!$homework) {
+            abort(400, 'homework not found');
+        }
+
+        $homework->user_id = $user_id;
+        $homework->file = $request->file;
+
+        $homework->save();
     }
 }

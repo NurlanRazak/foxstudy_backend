@@ -42,6 +42,7 @@ Route::group([
 ], function() {
     Route::get('user', 'AuthController@getUser');
     Route::post('course-subscription', 'CourseController@subscription');
+    Route::post('homework-upload', 'CourseController@uploadHomework');
 });
 
 
