@@ -21,7 +21,14 @@ class CourseController extends Controller
         $data['email'] = $user->email ?? null;
         $data['user_id'] = $user->id;
         $data['course_id'] = $course_id;
+        $exists = Subscription::where('course_id', $course_id)->where('user_id', $user->id)->first();
 
+        if ($exists) {
+            return response()->json([
+                'status' => false,
+                'message' => trans('admin.course_exists'),
+            ])->setStatusCode(400);
+        }
         $subscription = Subscription::create($data);
         $course = Course::find($course_id);
 

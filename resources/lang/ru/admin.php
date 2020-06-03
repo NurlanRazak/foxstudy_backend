@@ -54,6 +54,7 @@ return [
     'type_course' => 'Тип',
     'frequency' => 'Частота',
     'about_center' => 'Об образовательном центре',
+    'course_exists' => 'Курс у вас уже существует',
 
     'status' => 'Статус',
     'published' => 'Опубликован',
