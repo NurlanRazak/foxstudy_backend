@@ -25,10 +25,10 @@ class Homework extends Model
     protected $guarded = ['id'];
     protected $fillable = [
         'name', 'description', 'file',
-        'lesson_id', 'status'
+        'lesson_id', 'status', 'deadline_at'
     ];
     // protected $hidden = [];
-    // protected $dates = [];
+    protected $dates = ['deadline_at'];
 
     /*
     |--------------------------------------------------------------------------
@@ -84,4 +84,5 @@ class Homework extends Model
 
         $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path);
     }
+
 }

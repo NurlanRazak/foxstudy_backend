@@ -22,6 +22,8 @@ class CreateHomeworksTable extends Migration
             $table->unsignedBigInteger('lesson_id')->nullable();
             $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('set null');
 
+            $table->timestamp('deadline_at')->default(\Carbon\Carbon::now());
+
             $table->tinyInteger('status')->default(0);
             $table->integer('parent_id')->default(0)->nullable();
             $table->integer('lft')->unsigned()->nullable();

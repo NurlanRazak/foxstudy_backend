@@ -42,19 +42,25 @@ class HomeworkCrudController extends CrudController
                 'label' => trans('admin.description'),
             ],
             [
-                'name' => 'file',
-                'label' => trans('admin.file'),
-                'type' => 'model_function',
-                'function_name' => 'getFileUrl',
-                'limit' => 100,
-            ],
-            [
                 'name' => 'lesson_id',
                 'label' => trans_choice('admin.lesson',2),
                 'type' => 'select',
                 'entity' => 'lesson',
                 'attribute' => 'name',
                 'model' => Lesson::class,
+            ],
+            [
+                'name' => 'deadline_at',
+                'label' => trans('admin.deadline_at'),
+                'type' => 'date',
+                'format' => 'l H:m:s',
+            ],
+            [
+                'name' => 'file',
+                'label' => trans('admin.file'),
+                'type' => 'model_function',
+                'function_name' => 'getFileUrl',
+                'limit' => 100,
             ],
             [
                 'name' => 'status',
@@ -93,6 +99,11 @@ class HomeworkCrudController extends CrudController
                 'entity' => 'lesson',
                 'attribute' => 'name',
                 'model' => Lesson::class,
+            ],
+            [   // DateTime
+                'name'  => 'deadline_at',
+                'label' => trans('admin.deadline_at'),
+                'type'  => 'datetime',
             ],
             [
                 'name' => 'status',

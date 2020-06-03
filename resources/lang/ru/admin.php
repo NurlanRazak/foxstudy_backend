@@ -18,7 +18,6 @@ return [
     'article'   => 'новость|Новости',
     'lesson' => 'урок|Уроки',
     'homeworks' => 'задание|Домашние задания',
-    'file' => 'Файл',
 
 
     'subscription_success' => 'Вы успешно записались на курс',
@@ -56,6 +55,8 @@ return [
     'type_course' => 'Тип',
     'frequency' => 'Частота',
     'about_center' => 'Об образовательном центре',
+    'file' => 'Файл',
+    'deadline_at' => 'Дедлайн',
     'course_exists' => 'Курс у вас уже существует',
 
     'status' => 'Статус',
