@@ -54,7 +54,7 @@ class CourseController extends Controller
             'pg_description' => $description, //will be shown to client in process of payment, required
             'pg_result_url' => route('payment-result'),//route('payment-result')
             'pg_testing_mode' => 1,
-            'pg_success_url' => 'https://foxstudy.kz',
+            'pg_success_url' => 'https://foxstudy.kz/cabinet?success=true',
             'pg_param1' => $user_id,
         ];
 
