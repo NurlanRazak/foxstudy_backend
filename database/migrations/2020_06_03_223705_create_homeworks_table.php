@@ -22,6 +22,9 @@ class CreateHomeworksTable extends Migration
             $table->unsignedBigInteger('lesson_id')->nullable();
             $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('set null');
 
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->timestamp('deadline_at')->default(\Carbon\Carbon::now());
 
             $table->tinyInteger('status')->default(0);

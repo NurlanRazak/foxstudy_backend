@@ -8,6 +8,7 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 use App\Models\Lesson;
 use App\Models\Homework;
+use App\User;
 
 
 /**
@@ -48,6 +49,14 @@ class HomeworkCrudController extends CrudController
                 'entity' => 'lesson',
                 'attribute' => 'name',
                 'model' => Lesson::class,
+            ],
+            [
+                'name' => 'user_id',
+                'label' => trans('admin.user'),
+                'type' => 'select',
+                'entity' => 'user',
+                'attribute' => 'email',
+                'model' => User::class,
             ],
             [
                 'name' => 'deadline_at',
@@ -99,6 +108,14 @@ class HomeworkCrudController extends CrudController
                 'entity' => 'lesson',
                 'attribute' => 'name',
                 'model' => Lesson::class,
+            ],
+            [
+                'name' => 'user_id',
+                'label' => trans('admin.user'),
+                'type' => 'select2',
+                'entity' => 'user',
+                'attribute' => 'email',
+                'model' => User::class,
             ],
             [   // DateTime
                 'name'  => 'deadline_at',

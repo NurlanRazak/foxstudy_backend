@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use App\Models\Subscription;
+use App\Models\Homework;
 
 class User extends Authenticatable
 {
@@ -43,5 +44,10 @@ class User extends Authenticatable
     public function subscriptions()
     {
         return $this->hasMany(Subscription::class, 'user_id');
+    }
+
+    public function homeworks()
+    {
+        return $this->hasMany(Homework::class, 'user_id');
     }
 }
