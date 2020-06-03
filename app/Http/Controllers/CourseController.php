@@ -105,9 +105,14 @@ class CourseController extends Controller
             abort(400, 'homework not found');
         }
 
-        $homework->user_id = $user_id;
+        $homework->user_id = $user->id;
         $homework->file = $request->file;
 
         $homework->save();
+
+        return response()->json([
+            'message' => 'ok',
+            'success' => true
+        ])->setStatusCode(200);
     }
 }
