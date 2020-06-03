@@ -4,6 +4,7 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('subcategory') }}'><i class='nav-icon fa fa-list-alt'></i> {{ trans_choice('admin.subcategory', 2) }}</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('course') }}'><i class='nav-icon fa fa-desktop'></i> {{ trans_choice('admin.course', 2) }}</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('lesson') }}'><i class='nav-icon fa fa-book'></i> {{ trans_choice('admin.lesson', 2) }}</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('homework') }}'><i class='nav-icon fa fa-pencil-square-o'></i> {{ trans_choice('admin.homeworks', 2) }}</a></li>
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('article') }}'><i class='nav-icon fa fa-newspaper-o'></i> {{ trans_choice('admin.article', 2) }} </a></li>
 
@@ -22,8 +23,6 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('feedback') }}'><i class='nav-icon fa fa-commenting-o'></i> {{ trans_choice('admin.feedback',2) }}</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('manager') }}'><i class='nav-icon fa fa-user'></i> {{ trans_choice('admin.managers', 2) }}</a></li>
 
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('user') }}'><i class='nav-icon fa fa-question'></i> Users</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('user') }}'><i class='nav-icon fa fa-users'></i> {{ trans_choice('admin.users',2) }}</a></li>
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('subscription') }}'><i class='nav-icon fa fa-plus-square'></i> {{ trans_choice('admin.subscription', 2) }}</a></li>
-
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('homework') }}'><i class='nav-icon fa fa-pencil-square-o'></i> {{ trans_choice('admin.homeworks', 2) }}</a></li>
