@@ -28,7 +28,8 @@ class AuthController extends Controller
         }
 
         if($course_ids == null) {
-            return response()->json($user);
+            $data['user'] = $user;
+            return response()->json($data);
         } else {
             $course_collection = Course::find($course_ids);
         }
