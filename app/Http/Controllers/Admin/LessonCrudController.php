@@ -77,6 +77,7 @@ class LessonCrudController extends CrudController
                 'label' => trans('admin.image'),
                 'type' => 'image',
                 'upload' => true,
+                'crop' => true,
                 'disk' => 'uploads',
             ],
             [
