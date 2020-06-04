@@ -112,7 +112,7 @@ class CourseController extends Controller
         $homework->save();
 
         return response()->json([
-            'message' => 'ok',
+            'message' => url('uploads/'.$homework->file),
             'success' => true
         ])->setStatusCode(200);
     }
